@@ -1,0 +1,30 @@
+{
+	"dataset": ["data", "final_DB"],
+	"test_dataset": ["data", "Alkenes_final"],
+
+	"fp_settings":
+	{
+		"fp_type":"ECFP",
+		"fp_radius":2,
+		"nr_bits":512
+	},
+
+	"umap_settings":
+	{
+		"dimensions": 2,
+		"neighbours": 30,
+		"m_dist": 0.1,
+		"metric": "jaccard"
+	},
+
+	"n_clusters": 15,
+
+	"additional_settings":
+	{
+		"load_model": true,
+		"model_path": "model_nb30_mdist0.1_ECFP4_jacc.sav",
+		"exp_name": "3Aug_alk_top1",
+		"topn_mol": 1,
+		"selection_strategy": "centre-based"
+	}
+}
