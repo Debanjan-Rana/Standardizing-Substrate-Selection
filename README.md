@@ -4,14 +4,7 @@ With over 10,000 new reaction protocols arising every year, only a handful of th
 
 Even though chemists invest substantial effort to assess the scope of new protocols, the resulting scope tables involve significant biases, reducing their expressiveness.
 
-Herein we report a **standardized substrate selection strategy** designed to mitigate these biases and evaluate the applicability, as well as the limits, of any chemical reaction.
-
-- **Unsupervised learning** is utilized to map the chemical space of industrially relevant molecules.
-- Potential substrate candidates are projected onto this universal map, enabling the selection of a structurally diverse set of substrates with optimal relevance and coverage.
-- By testing our methodology on different chemical reactions, we demonstrate its effectiveness in finding general reactivity trends using only a few highly representative examples.
-
-The developed methodology empowers chemists to showcase the **unbiased applicability** of novel methodologies, facilitating their practical applications.  
-We hope this work triggers interdisciplinary discussions about biases in synthetic chemistry, leading to improved data quality.
+Herein we report a **standardized substrate selection strategy** designed to mitigate these biases and evaluate the applicability, as well as the limits, of any chemical reaction.**Unsupervised learning** is utilized to map the chemical space of industrially relevant molecules. Potential substrate candidates are projected onto this universal map, enabling the selection of a structurally diverse set of substrates with optimal relevance and coverage. By testing our methodology on different chemical reactions, we demonstrate its effectiveness in finding general reactivity trends using only a few highly representative examples. The developed methodology empowers chemists to showcase the **unbiased applicability** of novel methodologies, facilitating their practical applications. We hope this work triggers interdisciplinary discussions about biases in synthetic chemistry, leading to improved data quality.
 
 **📄 Link to the paper:** [ACS Central Science](https://pubs.acs.org/doi/10.1021/acscentsci.3c01638)
 
