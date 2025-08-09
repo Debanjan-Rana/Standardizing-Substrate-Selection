@@ -67,34 +67,26 @@ We hope this work triggers interdisciplinary discussions about biases in synthet
 }
 ```
 
-Parameter Notes
-dataset (list of paths): Folder(s) containing the drug dataset.
+## Parameter Details
 
-test_dataset (list of paths): Folder(s) containing the substrate dataset.
+- **dataset** *(list)*: Folder location for the drug dataset.
+- **test_dataset** *(list)*: Folder location for the respective substrate dataset.
+- **fp_settings** *(dict)*: Specifies the fingerprint type.  
+  - Supported: `ECFP`, `MACCS`.  
+  - For `ECFP`, also specify the `radius` and number of bits (`nBits`).
+- **umap_settings** *(dict)*: UMAP parameter configuration.
+- **n_clusters** *(int)*: Number of clusters for hierarchical agglomerative clustering.
 
-fp_settings.type (ECFP|MACCS): Fingerprint family.
-
-ECFP needs radius and nBits (e.g., 2 and 1024).
-
-umap_settings.n_neighbors: Larger → smoother, smaller → preserves local structure.
-
-umap_settings.min_dist: Lower → tighter clusters in 2D.
-
-n_clusters: Number of HAC clusters for selection.
-
-additional_settings.load_model (true|false): Use saved UMAP or train anew.
-
-additional_settings.model_path: Path to .sav if load_model=true.
-
-additional_settings.exp_name: Folder name for outputs.
-
-additional_settings.topn_mol: Substrates per cluster to pick.
-
-additional_settings.selection_strategy (centre-based|similarity-based):
-
-centre-based: closest to cluster centroid.
-
-similarity-based: most similar to a provided reference.
+**additional_settings** *(dict)*:
+- **load_model** *(bool)*:  
+  - `true`: Use a pre-trained model.  
+  - `false`: Train a new model with the given UMAP parameters.
+- **model_path** *(str)*: Path to the model file (required if `load_model` is `true`, e.g., `model_name.sav`).
+- **exp_name** *(str)*: Folder name for saving experiment results.
+- **topn_mol** *(int)*: Number of substrates to select from each cluster, based on the selection strategy.
+- **selection_strategy** *(str)*:  
+  - `centre-based`: Selects the substrate closest to the cluster centroid.  
+  - `similarity-based`: Selects the substrate dtructurally most similar to all drugs in that cluster.
 
 ## Add your files
 
