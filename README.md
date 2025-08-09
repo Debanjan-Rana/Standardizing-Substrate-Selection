@@ -65,6 +65,7 @@ We hope this work triggers interdisciplinary discussions about biases in synthet
     "selection_strategy": "centre-based"
   }
 }
+```
 
 Parameter Notes
 dataset (list of paths): Folder(s) containing the drug dataset.
