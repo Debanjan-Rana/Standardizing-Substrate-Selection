@@ -66,26 +66,34 @@ We hope this work triggers interdisciplinary discussions about biases in synthet
   }
 }
 
-Implementation guidelines
+Parameter Notes
+dataset (list of paths): Folder(s) containing the drug dataset.
 
-standardized_scope.txt has all the dependencies specified for running the Python scripts. The workflow can be executed through the scope_generator.py file. The scope_generator.py file imports and utilizes the classes defined in the substrate_selection.py file to carry out all the tasks. The substrate_selection.py file has three classes:
+test_dataset (list of paths): Folder(s) containing the substrate dataset.
 
-Class: Fingerprints: generates and stores the specified molecular fingerprints and smiles for all the molecules.
-Class: Chemspace_mapper: runs UMAP dimensionality reduction, hierarchical agglomerative clustering and selects substrate based on the specified selection strategy.
-Class: Scope_manager: wrapper class that incorporates the functionalities of ‘Fingerprints’ and ‘Chemspace_mapper’ classes. Along with that it reads the settings provided in settings.json, loads the datasets and saves all the obtained results. All the parameters for running the workflow can be specified using the settings.json file as described below.
+fp_settings.type (ECFP|MACCS): Fingerprint family.
 
-“dataset”: providing the folder location for the drug dataset as a list.
-“test_dataset”: providing the folder location for the respective substrate dataset as a list.
-“fp_settings”: dictionary specifying the fingerprint type. Currently, ECFP and MACCS keys are included. For ECFP the desired radius and number of bits should also be specified.
-“umap_settings”: dictionary specifying the UMAP parameter configuration.
-“n_clusters”: Number of clusters to be considered for hierarchical clustering.
-“additional_settings”:
-“load_model”: can be set true or false. If set as true, a trained model is used, otherwise, anew model would be trained with the given UMAP parameters.
-“model_path”: if “load_model” is set as true then the model name needs to be provided.
-e.g., model_name.sav
-“exp_name”: name of the folder under which the experiment results will be saved.
-“topn_mol”: specifying the number of substrates to be selected from each cluster depending on the selection strategy.
-“selection_strategy”: can be set “centre-based” or “similarity-based”
+ECFP needs radius and nBits (e.g., 2 and 1024).
+
+umap_settings.n_neighbors: Larger → smoother, smaller → preserves local structure.
+
+umap_settings.min_dist: Lower → tighter clusters in 2D.
+
+n_clusters: Number of HAC clusters for selection.
+
+additional_settings.load_model (true|false): Use saved UMAP or train anew.
+
+additional_settings.model_path: Path to .sav if load_model=true.
+
+additional_settings.exp_name: Folder name for outputs.
+
+additional_settings.topn_mol: Substrates per cluster to pick.
+
+additional_settings.selection_strategy (centre-based|similarity-based):
+
+centre-based: closest to cluster centroid.
+
+similarity-based: most similar to a provided reference.
 
 ## Add your files
 
