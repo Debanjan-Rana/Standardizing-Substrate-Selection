@@ -1,6 +1,29 @@
 # Standardizing Substrate Selection
 
+With over 10,000 new reaction protocols arising every year, only a handful of these procedures transition from academia to application. A major reason for this gap stems from the lack of comprehensive knowledge about a reaction’s scope, i.e., to which substrates the protocol can or cannot be applied. Even though chemists invest substantial effort to assess the scope of new protocols, the resulting scope tables involve significant biases, reducing their expressiveness. Herein we report a standardized substrate selection strategy designed to mitigate these biases and evaluate the applicability, as well as the limits, of any chemical reaction. Unsupervised learning is utilized to map the chemical space of industrially relevant molecules. Subsequently, potential substrate candidates are projected onto this universal map, enabling the selection of a structurally diverse set of substrates with optimal relevance and coverage. By testing our methodology on different chemical reactions, we were able to demonstrate its effectiveness in finding general reactivity trends by using a few highly representative examples. The developed methodology empowers chemists to showcase the unbiased applicability of novel methodologies, facilitating their practical applications. We hope that this work will trigger interdisciplinary discussions about biases in synthetic chemistry, leading to improved data quality.
 
+Link to the paper: https://pubs.acs.org/doi/10.1021/acscentsci.3c01638
+
+Implementation guidelines
+
+standardized_scope.txt has all the dependencies specified for running the Python scripts. The workflow can be executed through the scope_generator.py file. The scope_generator.py file imports and utilizes the classes defined in the substrate_selection.py file to carry out all the tasks. The substrate_selection.py file has three classes:
+
+Class: Fingerprints: generates and stores the specified molecular fingerprints and smiles for all the molecules.
+Class: Chemspace_mapper: runs UMAP dimensionality reduction, hierarchical agglomerative clustering and selects substrate based on the specified selection strategy.
+Class: Scope_manager: wrapper class that incorporates the functionalities of ‘Fingerprints’ and ‘Chemspace_mapper’ classes. Along with that it reads the settings provided in settings.json, loads the datasets and saves all the obtained results. All the parameters for running the workflow can be specified using the settings.json file as described below.
+
+“dataset”: providing the folder location for the drug dataset as a list.
+“test_dataset”: providing the folder location for the respective substrate dataset as a list.
+“fp_settings”: dictionary specifying the fingerprint type. Currently, ECFP and MACCS keys are included. For ECFP the desired radius and number of bits should also be specified.
+“umap_settings”: dictionary specifying the UMAP parameter configuration.
+“n_clusters”: Number of clusters to be considered for hierarchical clustering.
+“additional_settings”:
+“load_model”: can be set true or false. If set as true, a trained model is used, otherwise, anew model would be trained with the given UMAP parameters.
+“model_path”: if “load_model” is set as true then the model name needs to be provided.
+e.g., model_name.sav
+“exp_name”: name of the folder under which the experiment results will be saved.
+“topn_mol”: specifying the number of substrates to be selected from each cluster depending on the selection strategy.
+“selection_strategy”: can be set “centre-based” or “similarity-based”
 
 ## Getting started
 
